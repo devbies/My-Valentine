@@ -1,656 +1,802 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Will you be my valentine</title>
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
 
-        body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background: linear-gradient(135deg, #ffd1dc 0%, #ffb6c1 50%, #ffc0cb 100%);
-            min-height: 100vh;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            padding: 20px;
-        }
+      body {
+        font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+        background: linear-gradient(
+          135deg,
+          #ffd1dc 0%,
+          #ffb6c1 50%,
+          #ffc0cb 100%
+        );
+        min-height: 100vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding: 20px;
+      }
 
-        .container {
-            background: white;
-            border-radius: 30px;
-            padding: 50px 40px;
-            box-shadow: 0 20px 60px rgba(255, 105, 180, 0.3);
-            max-width: 450px;
-            width: 100%;
-            text-align: center;
-        }
+      .container {
+        background: white;
+        border-radius: 30px;
+        padding: 50px 40px;
+        box-shadow: 0 20px 60px rgba(255, 105, 180, 0.3);
+        max-width: 450px;
+        width: 100%;
+        text-align: center;
+      }
 
-        .generator-section {
-            display: block;
-        }
+      .generator-section {
+        display: block;
+      }
 
-        .valentine-section {
-            display: none;
-        }
+      .valentine-section {
+        display: none;
+      }
 
       /* Cat Character - Cuter Version */
-.cat-container {
-    position: relative;
-    margin: 0 auto 30px;
-    width: 180px;
-    height: 140px;
-}
+      .cat-container {
+        position: relative;
+        margin: 0 auto 30px;
+        width: 180px;
+        height: 140px;
+      }
 
-.cat-face {
-    width: 160px;
-    height: 130px;
-    background: #f4c5a3;
-    border-radius: 50% 50% 50% 50%;
-    position: relative;
-    margin: 0 auto;
-    box-shadow: 0 8px 20px rgba(244, 197, 163, 0.3);
-}
+      .cat-face {
+        width: 160px;
+        height: 130px;
+        background: #f4c5a3;
+        border-radius: 50% 50% 50% 50%;
+        position: relative;
+        margin: 0 auto;
+        box-shadow: 0 8px 20px rgba(244, 197, 163, 0.3);
+      }
 
-.cat-ear-left, .cat-ear-right {
-    width: 35px;
-    height: 35px;
-    background: #f4c5a3;
-    border-radius: 80% 0 50% 50%;
-    position: absolute;
-    top: -8px;
-}
+      .cat-ear-left,
+      .cat-ear-right {
+        width: 35px;
+        height: 35px;
+        background: #f4c5a3;
+        border-radius: 80% 0 50% 50%;
+        position: absolute;
+        top: -8px;
+      }
 
-.cat-ear-left {
-    left: 20px;
-    transform: rotate(-40deg);
-}
+      .cat-ear-left {
+        left: 20px;
+        transform: rotate(-40deg);
+      }
 
-.cat-ear-right {
-    right: 20px;
-    transform: rotate(40deg) scaleX(-1);
-}
+      .cat-ear-right {
+        right: 20px;
+        transform: rotate(40deg) scaleX(-1);
+      }
 
-.cat-eyes {
-    display: flex;
-    justify-content: center;
-    gap: 45px;
-    padding-top: 45px;
-}
+      .cat-eyes {
+        display: flex;
+        justify-content: center;
+        gap: 45px;
+        padding-top: 45px;
+      }
 
-.cat-eye {
-    width: 14px;
-    height: 14px;
-    background: #000;
-    border-radius: 50%;
-}
+      .cat-eye {
+        width: 14px;
+        height: 14px;
+        background: #000;
+        border-radius: 50%;
+      }
 
-.cat-nose {
-    width: 12px;
-    height: 10px;
-    background: #ff6b9d;
-    border-radius: 50%;
-    margin: 12px auto 0;
-}
+      .cat-nose {
+        width: 12px;
+        height: 10px;
+        background: #ff6b9d;
+        border-radius: 50%;
+        margin: 12px auto 0;
+      }
 
-.cat-blush-left, .cat-blush-right {
-    width: 30px;
-    height: 18px;
-    background: #f5b5a0;
-    border-radius: 50%;
-    position: absolute;
-    top: 58px;
-    opacity: 0.7;
-}
+      .cat-blush-left,
+      .cat-blush-right {
+        width: 30px;
+        height: 18px;
+        background: #f5b5a0;
+        border-radius: 50%;
+        position: absolute;
+        top: 58px;
+        opacity: 0.7;
+      }
 
-.cat-blush-left {
-    left: 15px;
-}
+      .cat-blush-left {
+        left: 15px;
+      }
 
-.cat-blush-right {
-    right: 15px;
-}
+      .cat-blush-right {
+        right: 15px;
+      }
 
-.heart-decoration {
-    position: absolute;
-    top: -5px;
-    right: 0px;
-    font-size: 50px;
-    animation: float 3s ease-in-out infinite;
-    filter: drop-shadow(0 4px 8px rgba(255, 107, 157, 0.3));
-}
+      .heart-decoration {
+        position: absolute;
+        top: -5px;
+        right: 0px;
+        font-size: 50px;
+        animation: float 3s ease-in-out infinite;
+        filter: drop-shadow(0 4px 8px rgba(255, 107, 157, 0.3));
+      }
 
-@keyframes float {
-    0%, 100% { transform: translateY(0px) rotate(-5deg); }
-    50% { transform: translateY(-8px) rotate(5deg); }
-}
+      @keyframes float {
+        0%,
+        100% {
+          transform: translateY(0px) rotate(-5deg);
+        }
+        50% {
+          transform: translateY(-8px) rotate(5deg);
+        }
+      }
+      h1 {
+        color: #333;
+        margin-bottom: 10px;
+        text-align: center;
+        font-size: 26px;
+      }
+
+      .subtitle {
+        text-align: center;
+        color: #ff69b4;
+        margin-bottom: 30px;
+        font-size: 14px;
+        font-weight: 600;
+      }
+
+      .form-group {
+        margin-bottom: 20px;
+      }
+
+      label {
+        display: block;
+        margin-bottom: 8px;
+        color: #555;
+        font-weight: 600;
+        font-size: 14px;
+        text-align: left;
+      }
+
+      input {
+        width: 100%;
+        padding: 14px 18px;
+        border: 2px solid #ffc0cb;
+        border-radius: 15px;
+        font-size: 16px;
+        transition: all 0.3s;
+        background: #fff8fa;
+      }
+
+      input:focus {
+        outline: none;
+        border-color: #ff69b4;
+        box-shadow: 0 0 0 4px rgba(255, 105, 180, 0.1);
+        background: white;
+      }
+
+      .btn {
+        width: 100%;
+        padding: 16px;
+        background: linear-gradient(135deg, #ff69b4 0%, #ff1493 100%);
+        color: white;
+        border: none;
+        border-radius: 15px;
+        font-size: 16px;
+        font-weight: 700;
+        cursor: pointer;
+        transition:
+          transform 0.2s,
+          box-shadow 0.2s;
+        margin-top: 10px;
+        box-shadow: 0 4px 15px rgba(255, 105, 180, 0.3);
+      }
+
+      .btn:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 6px 20px rgba(255, 105, 180, 0.4);
+      }
+
+      .btn:active {
+        transform: translateY(0);
+      }
+
+      .generated-link {
+        display: none;
+        margin-top: 30px;
+        padding: 25px;
+        background: linear-gradient(135deg, #fff8fa 0%, #ffe4e9 100%);
+        border-radius: 15px;
+        border: 2px solid #ffc0cb;
+      }
+
+      .link-container {
+        background: white;
+        padding: 14px;
+        border-radius: 10px;
+        word-break: break-all;
+        margin: 15px 0;
+        font-size: 13px;
+        color: #ff1493;
+        border: 1px solid #ffc0cb;
+      }
+
+      .copy-btn {
+        background: linear-gradient(135deg, #ff69b4 0%, #ff1493 100%);
+        margin-top: 10px;
+      }
+
+      /* Valentine Popup Styles */
+      .valentine-content {
+        text-align: center;
+      }
+
+      .valentine-title {
+        font-size: 28px;
+        color: #000;
+        margin-bottom: 40px;
+        font-weight: 700;
+        line-height: 1.4;
+      }
+
+      .button-container {
+        display: flex;
+        gap: 20px;
+        justify-content: center;
+        align-items: center;
+        position: relative;
+        min-height: 80px;
+        padding: 20px;
+        margin-bottom: 20px;
+      }
+
+      .valentine-btn {
+        padding: 16px 50px;
+        font-size: 18px;
+        font-weight: 700;
+        border: none;
+        border-radius: 25px;
+        cursor: pointer;
+        transition: all 0.3s;
+        min-width: 120px;
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+      }
+
+      .yes-btn {
+        background: #ff1493;
+        color: white;
+        position: relative;
+        z-index: 1;
+      }
+
+      .yes-btn:hover {
+        background: #ff69b4;
+        transform: scale(1.05);
+        box-shadow: 0 6px 20px rgba(255, 20, 147, 0.3);
+      }
+
+      .no-btn {
+        background: #e8e8e8;
+        color: #666;
+        position: relative;
+        z-index: 1;
+      }
+
+      .no-btn:hover {
+        background: #d0d0d0;
+      }
+
+      .no-btn.moving {
+        position: fixed;
+        transition: all 0.2s ease-out;
+      }
+
+      .shy-message {
+        font-size: 14px;
+        color: #666;
+        margin-top: 10px;
+      }
+
+      .credit-message {
+        font-size: 14px;
+        color: #ff69b4;
+        margin-top: 10px;
+      }
+
+      .credit-color {
+        color: #667eea;
+      }
+
+      .success-message {
+        display: none;
+        text-align: center;
+        position: relative;
+      }
+
+      /* Glitter Shower Animation */
+      .glitter-container {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        overflow: hidden;
+        pointer-events: none;
+        z-index: 10;
+      }
+
+      .glitter {
+        position: absolute;
+        width: 10px;
+        height: 10px;
+        background: linear-gradient(45deg, #ffd700, #ffed4e, #ffd700);
+        border-radius: 50%;
+        animation: fall linear infinite;
+        opacity: 0;
+        box-shadow: 0 0 10px #ffd700;
+      }
+
+      @keyframes fall {
+        0% {
+          opacity: 0;
+          transform: translateY(-10px) rotate(0deg);
+        }
+        10% {
+          opacity: 1;
+        }
+        90% {
+          opacity: 1;
+        }
+        100% {
+          opacity: 0;
+          transform: translateY(500px) rotate(360deg);
+        }
+      }
+
+      /* Generate multiple glitter particles */
+      .glitter:nth-child(1) {
+        left: 10%;
+        animation-duration: 3s;
+        animation-delay: 0s;
+      }
+      .glitter:nth-child(2) {
+        left: 20%;
+        animation-duration: 3.5s;
+        animation-delay: 0.2s;
+        background: linear-gradient(45deg, #ff69b4, #ff1493);
+        box-shadow: 0 0 10px #ff69b4;
+      }
+      .glitter:nth-child(3) {
+        left: 30%;
+        animation-duration: 2.8s;
+        animation-delay: 0.4s;
+      }
+      .glitter:nth-child(4) {
+        left: 40%;
+        animation-duration: 3.2s;
+        animation-delay: 0.1s;
+        background: linear-gradient(45deg, #ff69b4, #ff1493);
+        box-shadow: 0 0 10px #ff69b4;
+      }
+      .glitter:nth-child(5) {
+        left: 50%;
+        animation-duration: 3s;
+        animation-delay: 0.3s;
+      }
+      .glitter:nth-child(6) {
+        left: 60%;
+        animation-duration: 3.3s;
+        animation-delay: 0.5s;
+        background: linear-gradient(45deg, #ff69b4, #ff1493);
+        box-shadow: 0 0 10px #ff69b4;
+      }
+      .glitter:nth-child(7) {
+        left: 70%;
+        animation-duration: 2.9s;
+        animation-delay: 0.2s;
+      }
+      .glitter:nth-child(8) {
+        left: 80%;
+        animation-duration: 3.1s;
+        animation-delay: 0.4s;
+        background: linear-gradient(45deg, #ff69b4, #ff1493);
+        box-shadow: 0 0 10px #ff69b4;
+      }
+      .glitter:nth-child(9) {
+        left: 90%;
+        animation-duration: 3.4s;
+        animation-delay: 0.1s;
+      }
+      .glitter:nth-child(10) {
+        left: 15%;
+        animation-duration: 2.7s;
+        animation-delay: 0.6s;
+        background: linear-gradient(45deg, #ff69b4, #ff1493);
+        box-shadow: 0 0 10px #ff69b4;
+      }
+      .glitter:nth-child(11) {
+        left: 25%;
+        animation-duration: 3s;
+        animation-delay: 0.3s;
+      }
+      .glitter:nth-child(12) {
+        left: 35%;
+        animation-duration: 3.2s;
+        animation-delay: 0.5s;
+        background: linear-gradient(45deg, #ff69b4, #ff1493);
+        box-shadow: 0 0 10px #ff69b4;
+      }
+      .glitter:nth-child(13) {
+        left: 45%;
+        animation-duration: 2.8s;
+        animation-delay: 0.2s;
+      }
+      .glitter:nth-child(14) {
+        left: 55%;
+        animation-duration: 3.3s;
+        animation-delay: 0.4s;
+        background: linear-gradient(45deg, #ff69b4, #ff1493);
+        box-shadow: 0 0 10px #ff69b4;
+      }
+      .glitter:nth-child(15) {
+        left: 65%;
+        animation-duration: 3.1s;
+        animation-delay: 0.1s;
+      }
+      .glitter:nth-child(16) {
+        left: 75%;
+        animation-duration: 2.9s;
+        animation-delay: 0.5s;
+        background: linear-gradient(45deg, #ff69b4, #ff1493);
+        box-shadow: 0 0 10px #ff69b4;
+      }
+      .glitter:nth-child(17) {
+        left: 85%;
+        animation-duration: 3.2s;
+        animation-delay: 0.3s;
+      }
+      .glitter:nth-child(18) {
+        left: 95%;
+        animation-duration: 3s;
+        animation-delay: 0.2s;
+        background: linear-gradient(45deg, #ff69b4, #ff1493);
+        box-shadow: 0 0 10px #ff69b4;
+      }
+      .glitter:nth-child(19) {
+        left: 5%;
+        animation-duration: 2.8s;
+        animation-delay: 0.4s;
+      }
+      .glitter:nth-child(20) {
+        left: 50%;
+        animation-duration: 3.1s;
+        animation-delay: 0.6s;
+        background: linear-gradient(45deg, #ff69b4, #ff1493);
+        box-shadow: 0 0 10px #ff69b4;
+      }
+
+      /* GIPHY Sticker Animation */
+      .kissing-animation {
+        width: 280px;
+        height: 280px;
+        margin: 30px auto;
+        display: none;
+        animation: fadeInScale 0.6s ease-in;
+      }
+
+      @keyframes fadeInScale {
+        from {
+          opacity: 0;
+          transform: scale(0.5);
+        }
+        to {
+          opacity: 1;
+          transform: scale(1);
+        }
+      }
+
+      .kissing-animation img {
+        width: 100%;
+        height: 100%;
+        object-fit: contain;
+      }
+
+      .success-text {
+        font-size: 32px;
+        color: #ff1493;
+        font-weight: 700;
+        margin-bottom: 15px;
+      }
+
+      .success-subtitle {
+        font-size: 18px;
+        color: #666;
+      }
+
+      @media (max-width: 600px) {
+        .container {
+          padding: 40px 25px;
+        }
+
         h1 {
-            color: #333;
-            margin-bottom: 10px;
-            text-align: center;
-            font-size: 26px;
-        }
-
-        .subtitle {
-            text-align: center;
-            color: #ff69b4;
-            margin-bottom: 30px;
-            font-size: 14px;
-            font-weight: 600;
-        }
-
-        .form-group {
-            margin-bottom: 20px;
-        }
-
-        label {
-            display: block;
-            margin-bottom: 8px;
-            color: #555;
-            font-weight: 600;
-            font-size: 14px;
-            text-align: left;
-        }
-
-        input {
-            width: 100%;
-            padding: 14px 18px;
-            border: 2px solid #ffc0cb;
-            border-radius: 15px;
-            font-size: 16px;
-            transition: all 0.3s;
-            background: #fff8fa;
-        }
-
-        input:focus {
-            outline: none;
-            border-color: #ff69b4;
-            box-shadow: 0 0 0 4px rgba(255, 105, 180, 0.1);
-            background: white;
-        }
-
-        .btn {
-            width: 100%;
-            padding: 16px;
-            background: linear-gradient(135deg, #ff69b4 0%, #ff1493 100%);
-            color: white;
-            border: none;
-            border-radius: 15px;
-            font-size: 16px;
-            font-weight: 700;
-            cursor: pointer;
-            transition: transform 0.2s, box-shadow 0.2s;
-            margin-top: 10px;
-            box-shadow: 0 4px 15px rgba(255, 105, 180, 0.3);
-        }
-
-        .btn:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 6px 20px rgba(255, 105, 180, 0.4);
-        }
-
-        .btn:active {
-            transform: translateY(0);
-        }
-
-        .generated-link {
-            display: none;
-            margin-top: 30px;
-            padding: 25px;
-            background: linear-gradient(135deg, #fff8fa 0%, #ffe4e9 100%);
-            border-radius: 15px;
-            border: 2px solid #ffc0cb;
-        }
-
-        .link-container {
-            background: white;
-            padding: 14px;
-            border-radius: 10px;
-            word-break: break-all;
-            margin: 15px 0;
-            font-size: 13px;
-            color: #ff1493;
-            border: 1px solid #ffc0cb;
-        }
-
-        .copy-btn {
-            background: linear-gradient(135deg, #ff69b4 0%, #ff1493 100%);
-            margin-top: 10px;
-        }
-
-        /* Valentine Popup Styles */
-        .valentine-content {
-            text-align: center;
+          font-size: 22px;
         }
 
         .valentine-title {
-            font-size: 28px;
-            color: #000;
-            margin-bottom: 40px;
-            font-weight: 700;
-            line-height: 1.4;
+          font-size: 24px;
         }
 
-        .button-container {
-            display: flex;
-            gap: 20px;
-            justify-content: center;
-            align-items: center;
-            position: relative;
-            min-height: 80px;
-            padding: 20px;
-            margin-bottom: 20px;
+        .cat-container {
+          width: 130px;
+          height: 130px;
         }
 
-        .valentine-btn {
-            padding: 16px 50px;
-            font-size: 18px;
-            font-weight: 700;
-            border: none;
-            border-radius: 25px;
-            cursor: pointer;
-            transition: all 0.3s;
-            min-width: 120px;
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+        .cat-face {
+          width: 130px;
+          height: 105px;
         }
-
-        .yes-btn {
-            background: #ff1493;
-            color: white;
-            position: relative;
-            z-index: 1;
-        }
-
-        .yes-btn:hover {
-            background: #ff69b4;
-            transform: scale(1.05);
-            box-shadow: 0 6px 20px rgba(255, 20, 147, 0.3);
-        }
-
-        .no-btn {
-            background: #e8e8e8;
-            color: #666;
-            position: relative;
-            z-index: 1;
-        }
-
-        .no-btn:hover {
-            background: #d0d0d0;
-        }
-        
-        .no-btn.moving {
-            position: fixed;
-            transition: all 0.2s ease-out;
-        }
-
-        .shy-message {
-            font-size: 14px;
-            color: #666;
-            margin-top: 10px;
-        }
-
-         .credit-message {
-            font-size: 14px;
-            color: #667eea;
-            margin-top: 10px;
-        }
-
-
-        .success-message {
-            display: none;
-            text-align: center;
-            position: relative;
-        }
-
-        /* Glitter Shower Animation */
-        .glitter-container {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            overflow: hidden;
-            pointer-events: none;
-            z-index: 10;
-        }
-
-        .glitter {
-            position: absolute;
-            width: 10px;
-            height: 10px;
-            background: linear-gradient(45deg, #ffd700, #ffed4e, #ffd700);
-            border-radius: 50%;
-            animation: fall linear infinite;
-            opacity: 0;
-            box-shadow: 0 0 10px #ffd700;
-        }
-
-        @keyframes fall {
-            0% {
-                opacity: 0;
-                transform: translateY(-10px) rotate(0deg);
-            }
-            10% {
-                opacity: 1;
-            }
-            90% {
-                opacity: 1;
-            }
-            100% {
-                opacity: 0;
-                transform: translateY(500px) rotate(360deg);
-            }
-        }
-
-        /* Generate multiple glitter particles */
-        .glitter:nth-child(1) { left: 10%; animation-duration: 3s; animation-delay: 0s; }
-        .glitter:nth-child(2) { left: 20%; animation-duration: 3.5s; animation-delay: 0.2s; background: linear-gradient(45deg, #ff69b4, #ff1493); box-shadow: 0 0 10px #ff69b4; }
-        .glitter:nth-child(3) { left: 30%; animation-duration: 2.8s; animation-delay: 0.4s; }
-        .glitter:nth-child(4) { left: 40%; animation-duration: 3.2s; animation-delay: 0.1s; background: linear-gradient(45deg, #ff69b4, #ff1493); box-shadow: 0 0 10px #ff69b4; }
-        .glitter:nth-child(5) { left: 50%; animation-duration: 3s; animation-delay: 0.3s; }
-        .glitter:nth-child(6) { left: 60%; animation-duration: 3.3s; animation-delay: 0.5s; background: linear-gradient(45deg, #ff69b4, #ff1493); box-shadow: 0 0 10px #ff69b4; }
-        .glitter:nth-child(7) { left: 70%; animation-duration: 2.9s; animation-delay: 0.2s; }
-        .glitter:nth-child(8) { left: 80%; animation-duration: 3.1s; animation-delay: 0.4s; background: linear-gradient(45deg, #ff69b4, #ff1493); box-shadow: 0 0 10px #ff69b4; }
-        .glitter:nth-child(9) { left: 90%; animation-duration: 3.4s; animation-delay: 0.1s; }
-        .glitter:nth-child(10) { left: 15%; animation-duration: 2.7s; animation-delay: 0.6s; background: linear-gradient(45deg, #ff69b4, #ff1493); box-shadow: 0 0 10px #ff69b4; }
-        .glitter:nth-child(11) { left: 25%; animation-duration: 3s; animation-delay: 0.3s; }
-        .glitter:nth-child(12) { left: 35%; animation-duration: 3.2s; animation-delay: 0.5s; background: linear-gradient(45deg, #ff69b4, #ff1493); box-shadow: 0 0 10px #ff69b4; }
-        .glitter:nth-child(13) { left: 45%; animation-duration: 2.8s; animation-delay: 0.2s; }
-        .glitter:nth-child(14) { left: 55%; animation-duration: 3.3s; animation-delay: 0.4s; background: linear-gradient(45deg, #ff69b4, #ff1493); box-shadow: 0 0 10px #ff69b4; }
-        .glitter:nth-child(15) { left: 65%; animation-duration: 3.1s; animation-delay: 0.1s; }
-        .glitter:nth-child(16) { left: 75%; animation-duration: 2.9s; animation-delay: 0.5s; background: linear-gradient(45deg, #ff69b4, #ff1493); box-shadow: 0 0 10px #ff69b4; }
-        .glitter:nth-child(17) { left: 85%; animation-duration: 3.2s; animation-delay: 0.3s; }
-        .glitter:nth-child(18) { left: 95%; animation-duration: 3s; animation-delay: 0.2s; background: linear-gradient(45deg, #ff69b4, #ff1493); box-shadow: 0 0 10px #ff69b4; }
-        .glitter:nth-child(19) { left: 5%; animation-duration: 2.8s; animation-delay: 0.4s; }
-        .glitter:nth-child(20) { left: 50%; animation-duration: 3.1s; animation-delay: 0.6s; background: linear-gradient(45deg, #ff69b4, #ff1493); box-shadow: 0 0 10px #ff69b4; }
-
-        /* GIPHY Sticker Animation */
-        .kissing-animation {
-            width: 280px;
-            height: 280px;
-            margin: 30px auto;
-            display: none;
-            animation: fadeInScale 0.6s ease-in;
-        }
-
-        @keyframes fadeInScale {
-            from { opacity: 0; transform: scale(0.5); }
-            to { opacity: 1; transform: scale(1); }
-        }
-
-        .kissing-animation img {
-            width: 100%;
-            height: 100%;
-            object-fit: contain;
-        }
-
-        .success-text {
-            font-size: 32px;
-            color: #ff1493;
-            font-weight: 700;
-            margin-bottom: 15px;
-        }
-
-        .success-subtitle {
-            font-size: 18px;
-            color: #666;
-        }
-
-       
-
-        @media (max-width: 600px) {
-            .container {
-                padding: 40px 25px;
-            }
-
-            h1 {
-                font-size: 22px;
-            }
-
-            .valentine-title {
-                font-size: 24px;
-            }
-
-            .cat-container {
-                width: 130px;
-                height: 130px;
-            }
-
-            .cat-face {
-                width: 130px;
-                height: 105px;
-            }
-        }
+      }
     </style>
-</head>
-<body>
+  </head>
+  <body>
     <div class="container">
-        <!-- Link Generator Section -->
-        <div class="generator-section" id="generatorSection">
-            <h1>💝 Valentine Link Generator</h1>
-            <p class="subtitle">Create personalized Valentine's Day proposals!</p>
+      <!-- Link Generator Section -->
+      <div class="generator-section" id="generatorSection">
+        <h1>💝 Valentine Link Generator</h1>
+        <p class="subtitle">Create personalized Valentine's Day proposals!</p>
 
-            <form id="linkForm">
-                <div class="form-group">
-                    <label for="fromName">Your Name:</label>
-                    <input type="text" id="fromName" placeholder="e.g., John" required>
-                </div>
+        <form id="linkForm">
+          <div class="form-group">
+            <label for="fromName">Your Name:</label>
+            <input
+              type="text"
+              id="fromName"
+              placeholder="e.g., John"
+              required
+            />
+          </div>
 
-                <div class="form-group">
-                    <label for="toName">Valentine Name:</label>
-                    <input type="text" id="toName" placeholder="e.g., Sarah" required>
-                </div>
+          <div class="form-group">
+            <label for="toName">Valentine Name:</label>
+            <input type="text" id="toName" placeholder="e.g., Sarah" required />
+          </div>
 
-                <button type="submit" class="btn">✨ Generate Link</button>
-                <p class="credit-message">Created By Foumi ,Devbies</p>
-            </form>
+          <button type="submit" class="btn">✨ Generate Link</button>
+          <p class="credit-message">
+            Created by
+            <a class="credit-color" href="https://www.instagram.com/foum_ii" target="_blank">Foumi</a
+            >,
+            <a  class="credit-color" href="https://www.instagram.com/devbies.store" target="_blank"
+              >Devbies</a
+            >
+          </p>
+        </form>
 
-            <div class="generated-link" id="generatedLink">
-                <h3 style="color: #667eea; margin-bottom: 10px;">🎉 Your Link is Ready!</h3>
-                <div class="link-container" id="linkDisplay"></div>
-                <button class="btn copy-btn" id="copyBtn">📋 Copy Link</button>
-                <button class="btn" id="createAnother">Create Another Link</button>
-                
+        <div class="generated-link" id="generatedLink">
+          <h3 style="color: #667eea; margin-bottom: 10px">
+            🎉 Your Link is Ready!
+          </h3>
+          <div class="link-container" id="linkDisplay"></div>
+          <button class="btn copy-btn" id="copyBtn">📋 Copy Link</button>
+          <button class="btn" id="createAnother">Create Another Link</button>
+        </div>
+      </div>
+
+      <!-- Valentine Popup Section -->
+      <div class="valentine-section" id="valentineSection">
+        <div class="valentine-content" id="valentineContent">
+          <div class="cat-container">
+            <div class="heart-decoration">💖</div>
+            <div class="cat-face">
+              <div class="cat-ear-left"></div>
+              <div class="cat-ear-right"></div>
+              <div class="cat-eyes">
+                <div class="cat-eye"></div>
+                <div class="cat-eye"></div>
+              </div>
+              <div class="cat-nose"></div>
+              <div class="cat-blush-left"></div>
+              <div class="cat-blush-right"></div>
             </div>
+          </div>
+
+          <h2 class="valentine-title">
+            <span id="toNameDisplay">Hey there</span>, will you be my valentine?
+          </h2>
+
+          <div class="button-container">
+            <button class="valentine-btn yes-btn" id="yesBtn">Yes</button>
+            <button class="valentine-btn no-btn" id="noBtn">No</button>
+          </div>
+
+          <p class="shy-message">"No" seems a bit shy 😈</p>
+          <p class="credit-message">
+            Created by
+            <a  class="credit-color" href="https://www.instagram.com/foumi" target="_blank">Foumi</a>,
+            <a  class="credit-color" href="https://www.instagram.com/devbies" target="_blank"
+              >Devbies</a
+            >
+          </p>
         </div>
 
-        <!-- Valentine Popup Section -->
-        <div class="valentine-section" id="valentineSection">
-            <div class="valentine-content" id="valentineContent">
-                <div class="cat-container">
-                    <div class="heart-decoration">💖</div>
-                    <div class="cat-face">
-                        <div class="cat-ear-left"></div>
-                        <div class="cat-ear-right"></div>
-                        <div class="cat-eyes">
-                            <div class="cat-eye"></div>
-                            <div class="cat-eye"></div>
-                        </div>
-                        <div class="cat-nose"></div>
-                        <div class="cat-blush-left"></div>
-                        <div class="cat-blush-right"></div>
-                    </div>
-                </div>
-                
-                <h2 class="valentine-title">
-                    <span id="toNameDisplay">Hey there</span>, will you be my valentine?
-                </h2>
-                
-                <div class="button-container">
-                    <button class="valentine-btn yes-btn" id="yesBtn">Yes</button>
-                    <button class="valentine-btn no-btn" id="noBtn">No</button>
-                </div>
-                
-                <p class="shy-message">"No" seems a bit shy 😈</p>
-                 <p class="credit-message">Created By Foumi ,Devbies</p>
-            </div>
+        <div class="success-message" id="successMessage">
+          <!-- Glitter Shower -->
+          <div class="glitter-container">
+            <div class="glitter"></div>
+            <div class="glitter"></div>
+            <div class="glitter"></div>
+            <div class="glitter"></div>
+            <div class="glitter"></div>
+            <div class="glitter"></div>
+            <div class="glitter"></div>
+            <div class="glitter"></div>
+            <div class="glitter"></div>
+            <div class="glitter"></div>
+            <div class="glitter"></div>
+            <div class="glitter"></div>
+            <div class="glitter"></div>
+            <div class="glitter"></div>
+            <div class="glitter"></div>
+            <div class="glitter"></div>
+            <div class="glitter"></div>
+            <div class="glitter"></div>
+            <div class="glitter"></div>
+            <div class="glitter"></div>
+          </div>
 
-            <div class="success-message" id="successMessage">
-                <!-- Glitter Shower -->
-                <div class="glitter-container">
-                    <div class="glitter"></div>
-                    <div class="glitter"></div>
-                    <div class="glitter"></div>
-                    <div class="glitter"></div>
-                    <div class="glitter"></div>
-                    <div class="glitter"></div>
-                    <div class="glitter"></div>
-                    <div class="glitter"></div>
-                    <div class="glitter"></div>
-                    <div class="glitter"></div>
-                    <div class="glitter"></div>
-                    <div class="glitter"></div>
-                    <div class="glitter"></div>
-                    <div class="glitter"></div>
-                    <div class="glitter"></div>
-                    <div class="glitter"></div>
-                    <div class="glitter"></div>
-                    <div class="glitter"></div>
-                    <div class="glitter"></div>
-                    <div class="glitter"></div>
-                </div>
-                
-                <!-- GIPHY Cute Hugging Cats Sticker -->
-                <div class="kissing-animation" id="kissingAnimation">
-                    <img src="https://media.giphy.com/media/KmxmoHUGPDjfQXqGgv/giphy.gif" alt="Cute hugging cats">
-                </div>
-                
-                <h2 class="success-text">Yay! 💖</h2>
-                <p class="success-subtitle"><span id="fromNameSuccess">They</span> will be so happy!</p>
-            </div>
+          <!-- GIPHY Cute Hugging Cats Sticker -->
+          <div class="kissing-animation" id="kissingAnimation">
+            <img
+              src="https://media.giphy.com/media/KmxmoHUGPDjfQXqGgv/giphy.gif"
+              alt="Cute hugging cats"
+            />
+          </div>
+
+          <h2 class="success-text">Yay! 💖</h2>
+          <p class="success-subtitle">
+            <span id="fromNameSuccess">They</span> will be so happy!
+          </p>
         </div>
+      </div>
     </div>
 
     <script>
-        // Parse URL parameters
-        function getUrlParams() {
-            const params = new URLSearchParams(window.location.search);
-            return {
-                from: params.get('from'),
-                to: params.get('to')
-            };
-        }
+      // Parse URL parameters
+      function getUrlParams() {
+        const params = new URLSearchParams(window.location.search);
+        return {
+          from: params.get("from"),
+          to: params.get("to"),
+        };
+      }
 
-        // Check if this is a valentine link or generator page
-        const params = getUrlParams();
-        if (params.from && params.to) {
-            // Show valentine section
-            document.getElementById('generatorSection').style.display = 'none';
-            document.getElementById('valentineSection').style.display = 'block';
-            
-            // Set custom values
-            document.getElementById('toNameDisplay').textContent = decodeURIComponent(params.to);
-            document.getElementById('fromNameSuccess').textContent = decodeURIComponent(params.from);
-            
-            // Initialize moving No button
-            initializeNoButton();
-        } else {
-            // Show generator section
-            initializeGenerator();
-        }
+      // Check if this is a valentine link or generator page
+      const params = getUrlParams();
+      if (params.from && params.to) {
+        // Show valentine section
+        document.getElementById("generatorSection").style.display = "none";
+        document.getElementById("valentineSection").style.display = "block";
 
-        // Generator functionality
-        function initializeGenerator() {
-            const form = document.getElementById('linkForm');
-            const generatedLinkDiv = document.getElementById('generatedLink');
-            const linkDisplay = document.getElementById('linkDisplay');
-            const copyBtn = document.getElementById('copyBtn');
-            const createAnotherBtn = document.getElementById('createAnother');
+        // Set custom values
+        document.getElementById("toNameDisplay").textContent =
+          decodeURIComponent(params.to);
+        document.getElementById("fromNameSuccess").textContent =
+          decodeURIComponent(params.from);
 
-            form.addEventListener('submit', (e) => {
-                e.preventDefault();
-                
-                const fromName = document.getElementById('fromName').value;
-                const toName = document.getElementById('toName').value;
+        // Initialize moving No button
+        initializeNoButton();
+      } else {
+        // Show generator section
+        initializeGenerator();
+      }
 
-                // Generate link (title is now static)
-                const baseUrl = window.location.origin + window.location.pathname;
-                const link = `${baseUrl}?from=${encodeURIComponent(fromName)}&to=${encodeURIComponent(toName)}`;
-                
-                linkDisplay.textContent = link;
-                generatedLinkDiv.style.display = 'block';
-                
-                // Scroll to link
-                generatedLinkDiv.scrollIntoView({ behavior: 'smooth' });
-            });
+      // Generator functionality
+      function initializeGenerator() {
+        const form = document.getElementById("linkForm");
+        const generatedLinkDiv = document.getElementById("generatedLink");
+        const linkDisplay = document.getElementById("linkDisplay");
+        const copyBtn = document.getElementById("copyBtn");
+        const createAnotherBtn = document.getElementById("createAnother");
 
-            copyBtn.addEventListener('click', () => {
-                const link = linkDisplay.textContent;
-                navigator.clipboard.writeText(link).then(() => {
-                    copyBtn.textContent = '✅ Copied!';
-                    setTimeout(() => {
-                        copyBtn.textContent = '📋 Copy Link';
-                    }, 2000);
-                });
-            });
+        form.addEventListener("submit", (e) => {
+          e.preventDefault();
 
-            createAnotherBtn.addEventListener('click', () => {
-                form.reset();
-                generatedLinkDiv.style.display = 'none';
-            });
-        }
+          const fromName = document.getElementById("fromName").value;
+          const toName = document.getElementById("toName").value;
 
-        // Valentine section functionality
-        function initializeNoButton() {
-            const noBtn = document.getElementById('noBtn');
-            const yesBtn = document.getElementById('yesBtn');
-            const valentineContent = document.getElementById('valentineContent');
-            const successMessage = document.getElementById('successMessage');
+          // Generate link (title is now static)
+          const baseUrl = window.location.origin + window.location.pathname;
+          const link = `${baseUrl}?from=${encodeURIComponent(fromName)}&to=${encodeURIComponent(toName)}`;
 
-            // Move No button on hover
-            noBtn.addEventListener('mouseenter', () => {
-                noBtn.classList.add('moving');
-                
-                // Get viewport dimensions
-                const viewportWidth = window.innerWidth;
-                const viewportHeight = window.innerHeight;
-                
-                // Get button dimensions
-                const btnWidth = noBtn.offsetWidth;
-                const btnHeight = noBtn.offsetHeight;
-                
-                // Calculate safe random position (avoiding edges)
-                const maxX = viewportWidth - btnWidth - 20;
-                const maxY = viewportHeight - btnHeight - 20;
-                
-                const randomX = Math.max(20, Math.random() * maxX);
-                const randomY = Math.max(20, Math.random() * maxY);
-                
-                noBtn.style.left = randomX + 'px';
-                noBtn.style.top = randomY + 'px';
-            });
+          linkDisplay.textContent = link;
+          generatedLinkDiv.style.display = "block";
 
-            // Also trigger on touch for mobile
-            noBtn.addEventListener('touchstart', (e) => {
-                e.preventDefault();
-                const event = new Event('mouseenter');
-                noBtn.dispatchEvent(event);
-            });
+          // Scroll to link
+          generatedLinkDiv.scrollIntoView({ behavior: "smooth" });
+        });
 
-            // Handle Yes button click
-            yesBtn.addEventListener('click', () => {
-                valentineContent.style.display = 'none';
-                successMessage.style.display = 'block';
-                
-                // Show kissing teddies animation with delay
-                setTimeout(() => {
-                    document.getElementById('kissingAnimation').style.display = 'block';
-                }, 300);
-            });
+        copyBtn.addEventListener("click", () => {
+          const link = linkDisplay.textContent;
+          navigator.clipboard.writeText(link).then(() => {
+            copyBtn.textContent = "✅ Copied!";
+            setTimeout(() => {
+              copyBtn.textContent = "📋 Copy Link";
+            }, 2000);
+          });
+        });
 
-            // Prevent No button click (just in case someone is fast)
-            noBtn.addEventListener('click', (e) => {
-                e.preventDefault();
-                const event = new Event('mouseenter');
-                noBtn.dispatchEvent(event);
-            });
-        }
+        createAnotherBtn.addEventListener("click", () => {
+          form.reset();
+          generatedLinkDiv.style.display = "none";
+        });
+      }
+
+      // Valentine section functionality
+      function initializeNoButton() {
+        const noBtn = document.getElementById("noBtn");
+        const yesBtn = document.getElementById("yesBtn");
+        const valentineContent = document.getElementById("valentineContent");
+        const successMessage = document.getElementById("successMessage");
+
+        // Move No button on hover
+        noBtn.addEventListener("mouseenter", () => {
+          noBtn.classList.add("moving");
+
+          // Get viewport dimensions
+          const viewportWidth = window.innerWidth;
+          const viewportHeight = window.innerHeight;
+
+          // Get button dimensions
+          const btnWidth = noBtn.offsetWidth;
+          const btnHeight = noBtn.offsetHeight;
+
+          // Calculate safe random position (avoiding edges)
+          const maxX = viewportWidth - btnWidth - 20;
+          const maxY = viewportHeight - btnHeight - 20;
+
+          const randomX = Math.max(20, Math.random() * maxX);
+          const randomY = Math.max(20, Math.random() * maxY);
+
+          noBtn.style.left = randomX + "px";
+          noBtn.style.top = randomY + "px";
+        });
+
+        // Also trigger on touch for mobile
+        noBtn.addEventListener("touchstart", (e) => {
+          e.preventDefault();
+          const event = new Event("mouseenter");
+          noBtn.dispatchEvent(event);
+        });
+
+        // Handle Yes button click
+        yesBtn.addEventListener("click", () => {
+          valentineContent.style.display = "none";
+          successMessage.style.display = "block";
+
+          // Show kissing teddies animation with delay
+          setTimeout(() => {
+            document.getElementById("kissingAnimation").style.display = "block";
+          }, 300);
+        });
+
+        // Prevent No button click (just in case someone is fast)
+        noBtn.addEventListener("click", (e) => {
+          e.preventDefault();
+          const event = new Event("mouseenter");
+          noBtn.dispatchEvent(event);
+        });
+      }
     </script>
-</body>
+  </body>
 </html>
-
